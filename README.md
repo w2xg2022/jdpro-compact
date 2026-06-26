@@ -59,14 +59,3 @@ ql repo https://github.com/w2xg2022/jdpro-compact.git "jd_|jx_" "backUp" "^jd[^_
 ```
 
 其余步骤（依赖安装、环境变量 `JD_COOKIE`、通知设定）与上游 README 相同。
-
-<details>
-<summary>原始 README 笔记（节录自 6dylan6/jdpro）</summary>
-
-1、部署青龙登陆，版本不用追新，稳定才好，推荐部署到内网。
-2、到订阅管理创建订阅并运行。
-3、订阅执行完，到定时任务搜索依赖安装（jd_indeps）任务执行。
-4、到环境变量，创建变量，名称: `JD_COOKIE`，值：抓的CK（要安全就手抓），多个每行建一个，不要全写在一个。
-5、配置通知，通知的key填写到配置管理 `config.sh` 文件。
-
-</details>
