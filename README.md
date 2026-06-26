@@ -29,26 +29,22 @@
 
 排程时间统一控制在 **上午7:00 ~ 下午19:00** 之间，避免凌晨/深夜运行。
 
-重新部署到 QingLong 后，请手动到「定时任务」为下列脚本建立排程：
+### 京豆 / 农场类（12支）
 
-| 脚本 | 建议排程 (cron) | 说明 |
-| --- | --- | --- |
-| `jd_plantBean.js` | `10 7 * * *` 和 `50 18 * * *` | 种豆主程序 |
-| `jd_plantBean_help.js` | `10 7 * * *` 和 `50 18 * * *` | 种豆助力 |
-| `jd_farmnew_code_help.js` | `10 7 * * *` 和 `50 18 * * *` | 农场新-邀请码助力 |
-| `jd_water_new.js` | `10 7 * * *` 和 `50 18 * * *` | 农场新-浇水 |
-| `jd_farmnew_ck_help.js` | `10 7 * * *` 和 `50 18 * * *` | 农场新-CK助力 |
-| `jd_fruit_new.js` | `10 7 * * *` 和 `50 18 * * *` | 农场摘水果 |
-| `jd_newfarmlottery.js` | `10 7 * * *` 和 `50 18 * * *` | 新农场抽奖转盘 |
-| `jd_bean_change.js` | `10 7 * * *` 和 `50 18 * * *` | 京豆变动统计 |
-| `jd_beans_7days.py` | `10 7 * * *` 和 `50 18 * * *` | 京豆7天统计 |
-| `jd_bean_info.js` | `10 7 * * *` 和 `50 18 * * *` | 京豆资讯统计 |
-| `jd_pkabeans.js` | `10 7 * * *` 和 `50 18 * * *` | 礼品卡领豆 |
-| `jd_signbeanact_.js` | `10 7 * * *` 和 `50 18 * * *` | 天天领京豆 |
+建议分布在两个时间窗口内，**每支脚本错开不同的分钟数**，不要全部挤在同一分钟同时执行：
 
-> 以上12支「京豆/农场」类脚本，固定早上 **07:10**、晚上 **18:50** 各跑一次（同一支脚本要建两个cron任务）。两个时间点都落在 07:00~19:00 区间内。
+- 早上窗口：**07:00 ~ 07:25**
+- 晚上窗口：**18:30 ~ 18:55**
 
-基础设施脚本（`jd_CheckCK.js`、`jd_indeps.js`、`jd_pullfix.py`、`jd_sharecode.sh`、`jd_wskey.py`、`jd_wsck.py`、`jd_proxy_check.js`）排程时间不限，可依需求自行安排（例如依赖安装/拉库修复通常只需订阅完跑一次）。
+每支脚本各建两个 cron 任务（一个落在早上窗口，一个落在晚上窗口），分钟数在窗口内随机错开即可：`jd_plantBean.js`、`jd_plantBean_help.js`、`jd_farmnew_code_help.js`、`jd_water_new.js`、`jd_farmnew_ck_help.js`、`jd_fruit_new.js`、`jd_newfarmlottery.js`、`jd_bean_change.js`、`jd_beans_7days.py`、`jd_bean_info.js`、`jd_pkabeans.js`、`jd_signbeanact_.js`。
+
+### 基础设施类（7支）
+
+`jd_CheckCK.js`、`jd_indeps.js`、`jd_pullfix.py`、`jd_sharecode.sh`、`jd_wskey.py`、`jd_wsck.py`、`jd_proxy_check.js` 不需要常态排程，**建议直接停用定时任务**，需要时（例如刚拉库完要装依赖、或修复拉库问题）手动点「执行」即可。面板有夜间关机习惯的话，排到夜间也跑不到，不如直接停用。
+
+### 关于青龙的默认行为（重要限制）
+
+QingLong 拉取本仓库时，会用「自动添加定时任务」功能给新脚本各配一个默认排程时间，但**这个默认时间是 QingLong 自己生成的，不会按照上面的窗口分布，也不会自动停用基础设施类的排程**。也就是说，每次「全新订阅 / 删除重拉」之后，都需要手动按上面的建议重新调整一次排程（分布到两个窗口、停用基础设施类）；这个建议没办法写进脚本或仓库里自动生效，只能当作每次部署后的检查清单。
 
 ## 部署到 QingLong
 
