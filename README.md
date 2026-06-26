@@ -2,7 +2,7 @@
 
 个人私有仓库，复制自 [6dylan6/jdpro](https://github.com/6dylan6/jdpro)，并进行精简。
 
-声明：此库所有内容仅用于个人学习，原始来源与更新请参考上游 [6dylan6/jdpro](https://github.com/6dylan6/jdpro)。
+声明：此库所有内容仅用于个人学习，原始来源与更新请参考上游。
 
 ## 精简说明
 
