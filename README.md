@@ -20,6 +20,29 @@
 - `jd_wskey.py`、`jd_wsck.py` — wskey / cookie 轉換
 - `jd_proxy_check.js` — 代理檢測
 
+## 建議排程
+
+重新部署到 QingLong 後，請手動到「定時任務」幫下列腳本建立排程：
+
+| 腳本 | 建議排程 (cron) | 說明 |
+| --- | --- | --- |
+| `jd_plantBean.js` | `10 7 * * *` 和 `50 18 * * *` | 種豆主程式 |
+| `jd_plantBean_help.js` | `10 7 * * *` 和 `50 18 * * *` | 種豆助力 |
+| `jd_farmnew_code_help.js` | `10 7 * * *` 和 `50 18 * * *` | 農場新-邀請碼助力 |
+| `jd_water_new.js` | `10 7 * * *` 和 `50 18 * * *` | 農場新-澆水 |
+| `jd_farmnew_ck_help.js` | `10 7 * * *` 和 `50 18 * * *` | 農場新-CK助力 |
+| `jd_fruit_new.js` | `10 7 * * *` 和 `50 18 * * *` | 農場摘水果 |
+| `jd_newfarmlottery.js` | `10 7 * * *` 和 `50 18 * * *` | 新農場抽獎轉盤 |
+| `jd_bean_change.js` | `10 7 * * *` 和 `50 18 * * *` | 京豆變動統計 |
+| `jd_beans_7days.py` | `10 7 * * *` 和 `50 18 * * *` | 京豆7天統計 |
+| `jd_bean_info.js` | `10 7 * * *` 和 `50 18 * * *` | 京豆資訊統計 |
+| `jd_pkabeans.js` | `10 7 * * *` 和 `50 18 * * *` | 禮品卡領豆 |
+| `jd_signbeanact_.js` | `10 7 * * *` 和 `50 18 * * *` | 天天領京豆 |
+
+> 以上12支「京豆/農場資產統計」類腳本，固定早上 **07:10**、晚上 **18:50** 各跑一次（同一支腳本要建兩個cron任務）。
+
+基礎設施腳本（`jd_CheckCK.js`、`jd_indeps.js`、`jd_pullfix.py`、`jd_sharecode.sh`、`jd_wskey.py`、`jd_wsck.py`、`jd_proxy_check.js`）排程時間不限，可依需求自行安排（例如依賴安裝/拉庫修復通常只需訂閱完跑一次）。
+
 ## 部署到 QingLong
 
 到「訂閱管理」建立訂閱：
